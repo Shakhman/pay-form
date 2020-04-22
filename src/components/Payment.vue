@@ -631,7 +631,7 @@ export default {
 }
 
 .trust-block {
-  margin-top: 20px;
+  margin: 20px 0;
   display: inline-block;
   width: 100%;
   text-align: center;

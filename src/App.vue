@@ -27,6 +27,10 @@ export default {
 
 <style src="@/styles/main.css"></style>
 <style>
+#app {
+  min-height: fit-content;
+}
+
 .pointer {
   cursor: pointer !important;
 }
