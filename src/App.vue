@@ -1,28 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header>
+      <div class="warning-block">
+        WARNING: Due to COVID-19 and high demand our stores are struggling to
+        keep supply in stock. As of March 31, 2020 we do have a limited supply
+        IN STOCK and ready to ship within 24 hours.
+      </div>
+    </header>
+    <Payment />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Payment from "./components/Payment.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Payment,
+  },
+};
 </script>
 
+<style src="@/styles/main.css"></style>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.pointer {
+  cursor: pointer !important;
+}
+
+.font-weight-700 {
+  font-weight: 700;
+}
+
+.warning-block {
+  padding: 12px;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-size: 16px;
+  background: #f00;
+  color: #fff;
 }
 </style>
