@@ -113,7 +113,7 @@
               <b>
                 Special Discount Expires
                 <span style="color: #ef0e52;" class="font-weight-700">in</span>
-                <span id="countdown" style="color: #ef0e52;" class="font-weight-700"></span>
+                <span id="countdown-mobile" style="color: #ef0e52;" class="font-weight-700"></span>
                 <span
                   style="text-decoration: underline; color: #ef0e52;"
                   class="font-weight-700"
@@ -361,7 +361,7 @@
                           src="@/assets/next.svg"
                           alt="apply"
                           width="20"
-                          class="hidden-on-desktop"
+                          class="hidden-on-desktopnew"
                           style="vertical-align: text-bottom; padding-left: 5px"
                         />
                         <svg
@@ -500,15 +500,18 @@ export default {
       var _self = this;
       function tick() {
         var counter = document.getElementById("countdown");
+        var counterMobile = document.getElementById("countdown-mobile");
         var current_minutes = mins - 1;
         seconds--;
-        counter.innerHTML =
+        var result =
           " " +
           current_minutes.toString() +
           ":" +
           (seconds < 10 ? "0" : "") +
           String(seconds) +
           " ";
+        counterMobile.innerHTML = result;
+        counter.innerHTML = result;
 
         if (seconds > 0) {
           setTimeout(tick, 1000);
