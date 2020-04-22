@@ -232,6 +232,7 @@
               <img src="@/assets/trust.png" alt="trust01" />
               <!-- <img src="@/assets/trust02.png" alt="trust02" /> -->
             </div>
+            <br />
           </div>
         </div>
 
@@ -534,6 +535,7 @@ export default {
 .payment-wrapper {
   height: 100%;
   min-height: 100%;
+  /* padding-bottom: 20px; */
 }
 
 .header-wrapper {
@@ -631,7 +633,7 @@ export default {
 }
 
 .trust-block {
-  margin: 20px 0;
+  margin-top: 20px;
   display: inline-block;
   width: 100%;
   text-align: center;
