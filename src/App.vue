@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Preloader />
     <header>
       <div class="warning-block">
         WARNING: Due to COVID-19 and high demand our stores are struggling to
@@ -13,12 +14,14 @@
 
 <script>
 import Payment from "./components/Payment.vue";
+import Preloader from "./components/Preloader.vue";
 
 export default {
   name: "App",
   components: {
     Payment,
-  },
+    Preloader
+  }
 };
 </script>
 
