@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p style="font-weight:bold;float:left;width:100%;">Current Availability:</p>
+    <p style="font-weight:bold;float:left;width:100%;">Current Second Availability:</p>
     <div class="progress progress-bar-custom">
       <div
         class="progress-bar progress-bar-striped bg-warning progress-bar-animated"
@@ -13,7 +13,7 @@
     </div>
     <p class="timer-block">
       <b class="timer-main-block">
-        Special Discount Expires
+        Second Special Discount Expires
         <span class="font-weight-700">in</span>
         <span id="countdown" class="font-weight-700">{{ countdown }}</span>
         <span style="text-decoration: underline;" class="font-weight-700">HURRY!</span>
@@ -26,8 +26,8 @@
 export default {
   data() {
     return {
-      countdown: "15:00",
-      COUNTDOWN_MINUTES: 15
+      countdown: "1:00",
+      COUNTDOWN_MINUTES: 1
     };
   },
   methods: {
@@ -61,10 +61,7 @@ export default {
     }
   },
   mounted() {
-    var self = this;
-    setTimeout(function() {
-      self.countdownTimer(self.COUNTDOWN_MINUTES);
-    }, 1500);
+    this.countdownTimer(this.COUNTDOWN_MINUTES);
   }
 };
 </script>

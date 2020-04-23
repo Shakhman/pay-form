@@ -63,4 +63,8 @@ export default {
   background: #f00;
   color: #fff;
 }
+
+button:focus {
+  outline: 0;
+}
 </style>

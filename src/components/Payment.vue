@@ -95,6 +95,7 @@
                         v-model="name"
                         v-if="showNameInput"
                         @blur="onBlurInput"
+                        @keyup.enter="onBlurInput"
                         maxlength="50"
                       />
                       <bdo dir="ltr" v-else>{{ name }}</bdo>
@@ -111,8 +112,16 @@
           </div>
 
           <!-- Current Availability -->
-          <div class="available-show-mobile available-mobile">
-            <Countdown class="mobile-countdown" />
+          <div
+            class="available-show-mobile available-mobile"
+            v-if="showFirstTimer || showSecondTimer"
+          >
+            <Countdown class="mobile-countdown" @end-timer="onEndFirstTimer" v-if="showFirstTimer" />
+            <CountdownSecond
+              class="mobile-countdown"
+              @end-timer="onEndSecondTimer"
+              v-if="showSecondTimer"
+            />
           </div>
 
           <div class="section section--payment-method" data-payment-method>
@@ -301,8 +310,9 @@
 
             <!-- Discount -->
             <div class="order-summary__section order-summary__section--discount">
-              <div class="available-show-desktop">
-                <Countdown />
+              <div class="available-show-desktop" v-if="showFirstTimer || showSecondTimer">
+                <Countdown @end-timer="onEndFirstTimer" v-if="showFirstTimer" />
+                <CountdownSecond @end-timer="onEndSecondTimer" v-if="showSecondTimer" />
               </div>
 
               <form class="edit_checkout animate-floating-labels">
@@ -421,9 +431,10 @@
 
 <script>
 import Countdown from "@/components/Countdown";
+import CountdownSecond from "@/components/CountdownSecond";
 
 export default {
-  components: { Countdown },
+  components: { Countdown, CountdownSecond },
   data() {
     return {
       name: "name",
@@ -434,6 +445,8 @@ export default {
       },
       totalPrice: "$10.00",
       discount: "SPECIALE50",
+      showFirstTimer: true,
+      showSecondTimer: false,
       products: [
         {
           name: "Vegetable Magical Spiralizer",
@@ -470,6 +483,14 @@ export default {
     onToggleSidebar() {
       var node = document.querySelector("#sidebar");
       node.classList.toggle("hide-on-mobile");
+    },
+    onEndFirstTimer() {
+      this.showFirstTimer = false;
+      this.showSecondTimer = true;
+    },
+    onEndSecondTimer() {
+      this.showFirstTimer = false;
+      this.showSecondTimer = false;
     }
   }
 };
@@ -565,7 +586,7 @@ input[disabled] {
 
 @media (max-width: 999px) {
   .main__header {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .review-block__label {
@@ -611,8 +632,7 @@ input[disabled] {
 }
 
 .available-mobile {
-  margin-top: 30px;
-  margin-bottom: -20px;
+  margin-top: 10px;
 }
 
 .available-show-desktop {
@@ -655,5 +675,24 @@ input[disabled] {
   display: inline-flex !important;
   justify-content: space-between;
   align-items: center;
+}
+
+.order-summary__section--product-list,
+.order-summary__section__content {
+  overflow: inherit !important;
+}
+
+@media (max-width: 999px) {
+  .section {
+    padding-top: 10px !important;
+  }
+
+  .main {
+    padding-top: 0 !important;
+  }
+
+  .header-wrapper {
+    padding-top: 15px;
+  }
 }
 </style>
