@@ -12,11 +12,11 @@
       ></div>
     </div>
     <p class="timer-block">
-      <b>
+      <b class="timer-main-block">
         Special Discount Expires
-        <span style="color: #ef0e52;" class="font-weight-700">in</span>
-        <span id="countdown" style="color: #ef0e52;" class="font-weight-700">{{ countdown }}</span>
-        <span style="text-decoration: underline; color: #ef0e52;" class="font-weight-700">HURRY!</span>
+        <span class="font-weight-700">in</span>
+        <span id="countdown" class="font-weight-700">{{ countdown }}</span>
+        <span style="text-decoration: underline;" class="font-weight-700">HURRY!</span>
       </b>
     </p>
   </div>
@@ -114,7 +114,22 @@ export default {
 }
 
 .timer-block {
-  margin-bottom: 20px;
   font-size: 18px;
+}
+
+.timer-block .timer-main-block * {
+  color: #f00;
+}
+
+@media (min-width: 1000px) {
+  .timer-block {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .timer-block {
+    font-size: 17px;
+  }
 }
 </style>

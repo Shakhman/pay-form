@@ -1,5 +1,19 @@
 <template>
   <div class="payment-wrapper">
+    <div class="hidden-on-desktop">
+      <div class="content">
+        <div class="wrap">
+          <div class="main">
+            <header class="main__header">
+              <div class="header-wrapper">
+                <img src="@/assets/secure.svg" alt="secure" width="35" class="logo__icon" />
+                <h1 class="logo__text">Secure Online Payments</h1>
+              </div>
+            </header>
+          </div>
+        </div>
+      </div>
+    </div>
     <aside role="complementary">
       <button
         class="order-summary-toggle order-summary-toggle--show shown-if-js"
@@ -63,7 +77,7 @@
     <div class="content">
       <div class="wrap">
         <div class="main">
-          <header class="main__header">
+          <header class="main__header hide-on-mobile">
             <div class="header-wrapper">
               <img src="@/assets/secure.svg" alt="secure" width="35" class="logo__icon" />
               <h1 class="logo__text">Secure Online Payments</h1>
@@ -98,12 +112,12 @@
 
           <!-- Current Availability -->
           <div class="available-show-mobile available-mobile">
-            <Countdown />
+            <Countdown class="mobile-countdown" />
           </div>
 
           <div class="section section--payment-method" data-payment-method>
             <div class="section__header">
-              <h2 class="section__title" id="main-header" tabindex="-1">Payment</h2>
+              <h2 class="section__title" id="main-header">Payment</h2>
               <p class="section__text">All transactions are secure and encrypted.</p>
             </div>
           </div>
@@ -322,7 +336,7 @@
                           src="@/assets/next.svg"
                           alt="apply"
                           width="20"
-                          class="hidden-on-desktopnew"
+                          class="hidden-on-desktop new"
                           style="vertical-align: text-bottom; padding-left: 5px"
                         />
                         <svg
@@ -462,6 +476,13 @@ export default {
   /* padding-bottom: 20px; */
 }
 
+@media (max-width: 999px) {
+  .payment-wrapper {
+    height: auto;
+    min-height: auto;
+  }
+}
+
 .header-wrapper {
   vertical-align: middle;
 }
@@ -512,6 +533,7 @@ export default {
 
 .trust-block img {
   max-width: 100%;
+  opacity: 0.4;
 }
 
 input[disabled] {
@@ -572,6 +594,10 @@ input[disabled] {
   .force-hide-mobile {
     display: none !important;
   }
+
+  .available-mobile {
+    margin-bottom: 0 !important;
+  }
 }
 
 .trust-logo-2 {
@@ -580,7 +606,7 @@ input[disabled] {
 
 .available-mobile {
   margin-top: 30px;
-  margin-bottom: -30px;
+  margin-bottom: -20px;
 }
 
 .available-show-desktop {
@@ -605,9 +631,17 @@ input[disabled] {
   }
 }
 
-@media (min-width: 1000px) {
-  .order-summary__sections {
-    height: calc(100vh - 1em) !important;
-  }
+.order-summary-toggle__dropdown {
+  margin-left: 3px;
+}
+
+#main-header {
+  font-weight: 600;
+}
+
+.mobile-countdown {
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+  padding: 1.14286em;
 }
 </style>
