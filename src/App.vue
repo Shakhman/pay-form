@@ -4,8 +4,8 @@
     <header>
       <div class="warning-block">
         WARNING: Due to COVID-19 and high demand our stores are struggling to
-        keep supply in stock. As of {{ currentDateFormat }} we do have a limited supply
-        IN STOCK and ready to ship within 24 hours.
+        keep supply in stock. As of {{ currentDateFormat }} we do have a limited
+        supply IN STOCK and ready to ship within 24 hours.
       </div>
     </header>
     <Payment />
@@ -21,7 +21,7 @@ export default {
   name: "App",
   components: {
     Payment,
-    Preloader
+    Preloader,
   },
   computed: {
     currentDateFormat() {
@@ -31,8 +31,8 @@ export default {
       var yyyy = today.getFullYear();
 
       return dd + "." + mm + "." + yyyy;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -65,6 +65,10 @@ export default {
 }
 
 button:focus {
+  outline: 0;
+}
+
+input:focus {
   outline: 0;
 }
 </style>
