@@ -137,37 +137,43 @@
                 </div>
 
                 <div class="radio__label payment-method-wrapper">
-                  <label for="card" class="radio__label__primary content-box__emphasis">
+                  <label
+                    for="card"
+                    class="radio__label__primary content-box__emphasis card-payment-label"
+                  >
                     <h3>Pay by credit or debit card</h3>
-                  </label>
-                  <span class="radio__label__accessory">
-                    <span class="visually-hidden">Pay with:</span>
+                    <span class="radio__label__accessory">
+                      <span class="visually-hidden">Pay with:</span>
 
-                    <span data-brand-icons-for-gateway="36371497029">
-                      <span class="payment-icon payment-icon--visa" data-payment-icon="visa">
-                        <span class="visually-hidden">Visa,</span>
-                      </span>
-                      <span class="payment-icon payment-icon--master" data-payment-icon="master">
-                        <span class="visually-hidden">Mastercard,</span>
-                      </span>
-                      <span
-                        class="payment-icon payment-icon--american-express"
-                        data-payment-icon="american-express"
-                      >
-                        <span class="visually-hidden">American Express,</span>
-                      </span>
-                      <span class="payment-icon payment-icon--giropay" data-payment-icon="giropay">
-                        <!-- <span class="visually-hidden">
+                      <span data-brand-icons-for-gateway="36371497029">
+                        <span class="payment-icon payment-icon--visa" data-payment-icon="visa">
+                          <span class="visually-hidden">Visa,</span>
+                        </span>
+                        <span class="payment-icon payment-icon--master" data-payment-icon="master">
+                          <span class="visually-hidden">Mastercard,</span>
+                        </span>
+                        <span
+                          class="payment-icon payment-icon--american-express"
+                          data-payment-icon="american-express"
+                        >
+                          <span class="visually-hidden">American Express,</span>
+                        </span>
+                        <span
+                          class="payment-icon payment-icon--giropay"
+                          data-payment-icon="giropay"
+                        >
+                          <!-- <span class="visually-hidden">
                           ,
-                        </span>-->
-                      </span>
-                      <!-- <span class="payment-icon-list__more">
+                          </span>-->
+                        </span>
+                        <!-- <span class="payment-icon-list__more">
                         <span class="content-box__small-text">
                           and more…
                         </span>
-                      </span>-->
+                        </span>-->
+                      </span>
                     </span>
-                  </span>
+                  </label>
                 </div>
               </div>
 
@@ -643,5 +649,11 @@ input[disabled] {
   border: 1px solid #d5d5d5;
   border-radius: 4px;
   padding: 1.14286em;
+}
+
+.card-payment-label {
+  display: inline-flex !important;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
