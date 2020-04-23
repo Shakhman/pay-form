@@ -9,6 +9,7 @@
       </div>
     </header>
     <Payment />
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -37,6 +38,12 @@ export default {
 
 .font-weight-700 {
   font-weight: 700;
+}
+
+@media (max-width: 999px) {
+  .footer {
+    height: 50px;
+  }
 }
 
 .warning-block {
