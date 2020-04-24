@@ -21,7 +21,7 @@ export default {
   name: "App",
   components: {
     Payment,
-    Preloader,
+    Preloader
   },
   computed: {
     currentDateFormat() {
@@ -31,12 +31,13 @@ export default {
       var yyyy = today.getFullYear();
 
       return dd + "." + mm + "." + yyyy;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style src="@/styles/main.css"></style>
+<style src="@/styles/animate.css"></style>
 <style>
 #app {
   min-height: fit-content;

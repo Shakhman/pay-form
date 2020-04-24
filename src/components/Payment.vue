@@ -6,12 +6,7 @@
           <div class="main">
             <header class="main__header">
               <div class="header-wrapper">
-                <img
-                  src="@/assets/secure.svg"
-                  alt="secure"
-                  width="35"
-                  class="logo__icon"
-                />
+                <img src="@/assets/secure.svg" alt="secure" width="35" class="logo__icon" />
                 <h1 class="logo__text">Secure Online Payments</h1>
               </div>
             </header>
@@ -38,9 +33,7 @@
                 />
               </svg>
             </span>
-            <span
-              class="order-summary-toggle__text order-summary-toggle__text--show"
-            >
+            <span class="order-summary-toggle__text order-summary-toggle__text--show">
               <span>Show order summary</span>
               <svg
                 width="11"
@@ -48,15 +41,14 @@
                 xmlns="http://www.w3.org/2000/svg"
                 class="order-summary-toggle__dropdown"
                 fill="#000"
+                :class="{toggleArrow}"
               >
                 <path
                   d="M.504 1.813l4.358 3.845.496.438.496-.438 4.642-4.096L9.504.438 4.862 4.534h.992L1.496.69.504 1.812z"
                 />
               </svg>
             </span>
-            <span
-              class="order-summary-toggle__text order-summary-toggle__text--hide"
-            >
+            <span class="order-summary-toggle__text order-summary-toggle__text--hide">
               <span>Hide order summary</span>
               <svg
                 width="11"
@@ -77,8 +69,7 @@
               <span
                 class="total-recap__final-price skeleton-while-loading"
                 data-checkout-payment-due-target="1110"
-                >{{ totalPrice }}$</span
-              >
+              >{{ totalPrice }}$</span>
             </span>
           </span>
         </span>
@@ -89,21 +80,13 @@
         <div class="main">
           <header class="main__header hide-on-mobile">
             <div class="header-wrapper">
-              <img
-                src="@/assets/secure.svg"
-                alt="secure"
-                width="35"
-                class="logo__icon"
-              />
+              <img src="@/assets/secure.svg" alt="secure" width="35" class="logo__icon" />
               <h1 class="logo__text">Secure Online Payments</h1>
             </div>
           </header>
           <div class="section">
             <div class="content-box">
-              <div
-                role="table"
-                class="content-box__row content-box__row--tight-spacing-vertical"
-              >
+              <div role="table" class="content-box__row content-box__row--tight-spacing-vertical">
                 <div role="row" class="review-block">
                   <div class="review-block__inner">
                     <div role="rowheader" class="review-block__label">Name</div>
@@ -120,12 +103,12 @@
                     </div>
                     <div role="cell" class="review-block__link">
                       <a class="link--small">
-                        <span
-                          aria-hidden="true"
-                          @click="onChangeName"
-                          class="pointer"
-                          >Change</span
-                        >
+                        <span aria-hidden="true" @click="onChangeName" class="pointer">
+                          <template v-if="showNameInput">
+                            <p style="color: #127b12" @click="onBlurInput">Save</p>
+                          </template>
+                          <template v-else>Change</template>
+                        </span>
                       </a>
                     </div>
                   </div>
@@ -139,11 +122,7 @@
             class="available-show-mobile available-mobile"
             v-if="showFirstTimer || showSecondTimer"
           >
-            <Countdown
-              class="mobile-countdown"
-              @end-timer="onEndFirstTimer"
-              v-if="showFirstTimer"
-            />
+            <Countdown class="mobile-countdown" @end-timer="onEndFirstTimer" v-if="showFirstTimer" />
             <CountdownSecond
               class="mobile-countdown"
               @end-timer="onEndSecondTimer"
@@ -154,9 +133,7 @@
           <div class="section section--payment-method" data-payment-method>
             <div class="section__header">
               <h2 class="section__title" id="main-header">Payment</h2>
-              <p class="section__text">
-                All transactions are secure and encrypted.
-              </p>
+              <p class="section__text">All transactions are secure and encrypted.</p>
             </div>
           </div>
           <div class="section__content">
@@ -174,7 +151,7 @@
                   />
                 </div>
 
-                <div class="radio__label payment-method-wrapper">
+                <div class="radio__label payment-method-wrapper animated">
                   <label
                     for="card"
                     class="radio__label__primary content-box__emphasis card-payment-label"
@@ -184,16 +161,10 @@
                       <span class="visually-hidden">Pay with:</span>
 
                       <span data-brand-icons-for-gateway="36371497029">
-                        <span
-                          class="payment-icon payment-icon--visa"
-                          data-payment-icon="visa"
-                        >
+                        <span class="payment-icon payment-icon--visa" data-payment-icon="visa">
                           <span class="visually-hidden">Visa,</span>
                         </span>
-                        <span
-                          class="payment-icon payment-icon--master"
-                          data-payment-icon="master"
-                        >
+                        <span class="payment-icon payment-icon--master" data-payment-icon="master">
                           <span class="visually-hidden">Mastercard,</span>
                         </span>
                         <span
@@ -222,8 +193,9 @@
               </div>
 
               <div
-                class="radio-wrapper content-box__row content-box__row--secondary"
+                class="radio-wrapper content-box__row content-box__row--secondary animated"
                 v-show="payments.card"
+                :class="{'fadeIn': payments.card}"
               >
                 <div class="blank-slate">
                   <!-- <i class="blank-slate__icon icon icon--offsite"></i> -->
@@ -244,10 +216,7 @@
                 </div>
 
                 <div class="radio__label">
-                  <label
-                    for="paypal"
-                    class="radio__label__primary content-box__emphasis"
-                  >
+                  <label for="paypal" class="radio__label__primary content-box__emphasis">
                     <img
                       alt="PayPal"
                       class="offsite-payment-gateway-logo"
@@ -259,7 +228,8 @@
 
               <div
                 v-show="payments.paypal"
-                class="radio-wrapper content-box__row content-box__row--secondary"
+                class="radio-wrapper content-box__row content-box__row--secondary animated fadeIn"
+                :class="{'fadeIn': payments.paypal}"
               >
                 <div class="blank-slate">
                   <!-- <i class="blank-slate__icon icon icon--offsite"></i> -->
@@ -275,18 +245,10 @@
               </div>
             </fieldset>
             <div class="trust-block">
-              <img
-                src="@/assets/trust.png"
-                alt="trust-logos"
-                class="force-hide-mobile"
-              />
+              <img src="@/assets/trust.png" alt="trust-logos" class="force-hide-mobile" />
               <div class="force-show-mobile">
                 <img src="@/assets/trust01.png" alt="trust01" />
-                <img
-                  src="@/assets/trust02.png"
-                  alt="trust02"
-                  class="trust-logo-2"
-                />
+                <img src="@/assets/trust02.png" alt="trust02" class="trust-logo-2" />
               </div>
             </div>
             <br />
@@ -294,20 +256,12 @@
         </div>
 
         <!-- Sibebar -->
-        <aside
-          class="sidebar hide-on-mobile fade-in"
-          role="complementary"
-          id="sidebar"
-        >
+        <aside class="sidebar hide-on-mobile fade-in" role="complementary" id="sidebar">
           <div class="order-summary__sections">
-            <div
-              class="order-summary__section order-summary__section--product-list"
-            >
+            <div class="order-summary__section order-summary__section--product-list">
               <div class="order-summary__section__content">
                 <table class="product-table">
-                  <caption class="visually-hidden">
-                    Shopping cart
-                  </caption>
+                  <caption class="visually-hidden">Shopping cart</caption>
                   <thead class="product-table__header">
                     <tr>
                       <th scope="col">
@@ -325,11 +279,7 @@
                     </tr>
                   </thead>
                   <tbody data-order-summary-section="line-items">
-                    <tr
-                      class="product"
-                      v-for="(product, k) in products"
-                      :key="k"
-                    >
+                    <tr class="product" v-for="(product, k) in products" :key="k">
                       <td class="product__image">
                         <div class="product-thumbnail">
                           <div class="product-thumbnail__wrapper">
@@ -342,26 +292,21 @@
                           <span
                             class="product-thumbnail__quantity"
                             aria-hidden="true"
-                            >{{ product.quantity }}</span
-                          >
+                          >{{ product.quantity }}</span>
                         </div>
                       </td>
                       <th class="product__description" scope="row">
                         <span
                           class="product__description__name order-summary__emphasis"
-                          >{{ product.name }}</span
-                        >
+                        >{{ product.name }}</span>
                         <span
                           class="product__description__variant order-summary__small-text"
-                          >x{{ product.quantity }}</span
-                        >
+                        >x{{ product.quantity }}</span>
                       </th>
                       <td class="product__price">
                         <span
                           class="order-summary__emphasis skeleton-while-loading"
-                        >
-                          ${{ (product.quantity * product.price).toFixed(2) }}
-                        </span>
+                        >${{ (product.quantity * product.price).toFixed(2) }}</span>
                       </td>
                     </tr>
                   </tbody>
@@ -370,18 +315,10 @@
             </div>
 
             <!-- Discount -->
-            <div
-              class="order-summary__section order-summary__section--discount"
-            >
-              <div
-                class="available-show-desktop"
-                v-if="showFirstTimer || showSecondTimer"
-              >
+            <div class="order-summary__section order-summary__section--discount">
+              <div class="available-show-desktop" v-if="showFirstTimer || showSecondTimer">
                 <Countdown @end-timer="onEndFirstTimer" v-if="showFirstTimer" />
-                <CountdownSecond
-                  @end-timer="onEndSecondTimer"
-                  v-if="showSecondTimer"
-                />
+                <CountdownSecond @end-timer="onEndSecondTimer" v-if="showSecondTimer" />
               </div>
 
               <form class="edit_checkout animate-floating-labels">
@@ -392,8 +329,7 @@
                         <label
                           class="field__label field__label--visible"
                           for="checkout_reduction_code"
-                          >Discount code</label
-                        >
+                        >Discount code</label>
                         <input
                           placeholder="Discount code"
                           class="field__input"
@@ -417,8 +353,7 @@
                         <span
                           class="btn__content visually-hidden-on-mobile"
                           aria-hidden="true"
-                          >Applied</span
-                        >
+                        >Applied</span>
                         <img
                           src="@/assets/next.svg"
                           alt="apply"
@@ -445,9 +380,7 @@
               data-order-summary-section="payment-lines"
             >
               <table class="total-line-table">
-                <caption class="visually-hidden">
-                  Cost summary
-                </caption>
+                <caption class="visually-hidden">Cost summary</caption>
                 <thead>
                   <tr>
                     <th scope="col">
@@ -465,24 +398,17 @@
                       <span>Shipping</span>
                     </th>
                     <td class="total-line__price">
-                      <span
-                        class="skeleton-while-loading order-summary__emphasis free"
-                        >Free</span
-                      >
+                      <span class="skeleton-while-loading order-summary__emphasis free">Free</span>
                     </td>
                   </tr>
 
-                  <tr
-                    class="total-line total-line--taxes hidden"
-                    data-checkout-taxes
-                  >
+                  <tr class="total-line total-line--taxes hidden" data-checkout-taxes>
                     <th class="total-line__name" scope="row">Taxes</th>
                     <td class="total-line__price">
                       <span
                         class="order-summary__emphasis skeleton-while-loading"
                         data-checkout-total-taxes-target="0"
-                        >$0.00</span
-                      >
+                      >$0.00</span>
                     </td>
                   </tr>
                 </tbody>
@@ -492,14 +418,11 @@
                       <span class="payment-due-label__total">Total</span>
                     </th>
                     <td class="total-line__price payment-due">
-                      <span class="payment-due__currency remove-while-loading"
-                        >USD</span
-                      >
+                      <span class="payment-due__currency remove-while-loading">USD</span>
                       <span
                         class="payment-due__price skeleton-while-loading--lg"
                         data-checkout-payment-due-target="1110"
-                        >{{ totalPrice }}$</span
-                      >
+                      >{{ totalPrice }}$</span>
                     </td>
                   </tr>
                 </tfoot>
@@ -524,28 +447,29 @@ export default {
       showNameInput: false,
       payments: {
         paypal: false,
-        card: true,
+        card: true
       },
       totalPrice: "$10.00",
       discount: "SPECIALE50",
       showFirstTimer: true,
       showSecondTimer: false,
+      toggleArrow: false,
       products: [
         {
           name: "Vegetable Magical Spiralizer",
           price: 9.0,
           quantity: 3,
           image:
-            "//cdn.shopify.com/s/files/1/0031/2229/8949/products/f2114f51ac2ac322e5da14acf07618cc_small.jpg?v=1550488948",
+            "//cdn.shopify.com/s/files/1/0031/2229/8949/products/f2114f51ac2ac322e5da14acf07618cc_small.jpg?v=1550488948"
         },
         {
           name: "Vegetable Magical Spiralizer",
           price: 9.0,
           quantity: 3,
           image:
-            "//cdn.shopify.com/s/files/1/0031/2229/8949/products/f2114f51ac2ac322e5da14acf07618cc_small.jpg?v=1550488948",
-        },
-      ],
+            "//cdn.shopify.com/s/files/1/0031/2229/8949/products/f2114f51ac2ac322e5da14acf07618cc_small.jpg?v=1550488948"
+        }
+      ]
     };
   },
   methods: {
@@ -566,6 +490,13 @@ export default {
     onToggleSidebar() {
       this.$("#sidebar").slideToggle();
       this.$("#sidebar").toggleClass("hide-on-mobile");
+      console.log(this.$("#sidebar").hasClass("hide-on-mobile"));
+
+      if (this.$("#sidebar").hasClass("hide-on-mobile")) {
+        this.toggleArrow = false;
+      } else {
+        this.toggleArrow = true;
+      }
     },
     onEndFirstTimer() {
       this.showFirstTimer = false;
@@ -574,8 +505,8 @@ export default {
     onEndSecondTimer() {
       this.showFirstTimer = false;
       this.showSecondTimer = false;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -783,5 +714,11 @@ input[disabled] {
   #sidebar {
     display: block !important;
   }
+}
+
+.toggleArrow {
+  transition: all 1s ease-in-out;
+
+  transform: rotate(180deg);
 }
 </style>
