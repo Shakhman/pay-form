@@ -17,15 +17,16 @@ export default {
   components: {
     Payment,
     Preloader,
-    Header,
-  },
+    Header
+  }
 };
 </script>
 
 <style src="@/styles/main.css"></style>
 <style>
 #app {
-  min-height: fit-content;
+  /* min-height: fit-content; */
+  max-height: 100%;
 }
 
 .pointer {

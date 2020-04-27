@@ -691,6 +691,7 @@ input[disabled] {
 @media (min-width: 999px) {
   #sidebar {
     display: block !important;
+    height: 100vh;
   }
 }
 
