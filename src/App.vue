@@ -24,9 +24,13 @@ export default {
 
 <style src="@/styles/main.css"></style>
 <style>
+body {
+  height: auto;
+}
+
 #app {
-  /* min-height: fit-content; */
-  max-height: 100%;
+  min-height: fit-content;
+  /* max-height: 100%; */
 }
 
 .pointer {

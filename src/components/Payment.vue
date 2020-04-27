@@ -232,7 +232,6 @@
                 <img src="@/assets/trust02.png" alt="trust02" class="trust-logo-2" />
               </div>
             </div>
-            <br />
           </div>
         </div>
 
@@ -551,6 +550,7 @@ export default {
   display: inline-block;
   width: 100%;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .trust-block img {
@@ -691,7 +691,7 @@ input[disabled] {
 @media (min-width: 999px) {
   #sidebar {
     display: block !important;
-    height: 100vh;
+    /* height: 100vh; */
   }
 }
 
