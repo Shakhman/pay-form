@@ -29,8 +29,8 @@ body {
 }
 
 #app {
-  min-height: fit-content;
-  /* max-height: 100%; */
+  /* min-height: fit-content; */
+  max-height: 100%;
 }
 
 .pointer {

@@ -645,6 +645,10 @@ input[disabled] {
   .available-show-desktop {
     display: none !important;
   }
+
+  .trust-block {
+    margin-bottom: 0;
+  }
 }
 
 .order-summary-toggle__dropdown {
