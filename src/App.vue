@@ -25,7 +25,7 @@ export default {
 <style src="@/styles/main.css"></style>
 <style>
 body {
-  height: auto;
+  height: 100%;
 }
 
 #app {
