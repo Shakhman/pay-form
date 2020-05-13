@@ -121,109 +121,70 @@
           </div>
           <div class="section__content">
             <fieldset class="content-box">
-              <legend class="visually-hidden">Choose a payment method</legend>
-
-              <div class="radio-wrapper content-box__row">
+              <div
+                class="radio-wrapper content-box__row"
+                v-for="(item, k) in paymentsData"
+                :key="k"
+              >
                 <div class="radio__input">
                   <input
-                    id="card"
+                    :id="k"
+                    :name="k"
                     class="input-radio"
                     type="radio"
-                    :checked="payments.card"
-                    @click="onPaymentsCardClick"
+                    :checked="payments[k]"
+                    @click="onPaymentsClick(k)"
                   />
                 </div>
-
-                <div class="radio__label payment-method-wrapper animated">
+                <div class="radio__label payment-method-wrapper">
                   <label
-                    for="card"
+                    :for="k"
                     class="radio__label__primary content-box__emphasis card-payment-label"
                   >
-                    <h3>Pay by credit or debit card</h3>
-                    <span class="radio__label__accessory">
-                      <span class="visually-hidden">Pay with:</span>
-
-                      <span data-brand-icons-for-gateway="36371497029">
-                        <span class="payment-icon payment-icon--visa" data-payment-icon="visa">
-                          <span class="visually-hidden">Visa,</span>
-                        </span>
-                        <span class="payment-icon payment-icon--master" data-payment-icon="master">
-                          <span class="visually-hidden">Mastercard,</span>
-                        </span>
-                        <span
-                          class="payment-icon payment-icon--american-express"
-                          data-payment-icon="american-express"
-                        >
-                          <span class="visually-hidden">American Express,</span>
-                        </span>
-                        <span
-                          class="payment-icon payment-icon--giropay"
-                          data-payment-icon="giropay"
-                        >
-                          <!-- <span class="visually-hidden">
-                          ,
-                          </span>-->
-                        </span>
-                        <!-- <span class="payment-icon-list__more">
-                        <span class="content-box__small-text">
-                          and more…
-                        </span>
-                        </span>-->
-                      </span>
+                    <h3 v-html="item.name"></h3>
+                    <span class="radio__label__accessory" v-if="item.icons.length">
+                      <span
+                        class="payment-icon payment-icon--visa"
+                        data-payment-icon="visa"
+                        v-if="item.icons.includes('visa')"
+                      ></span>
+                      <span
+                        class="payment-icon payment-icon--master"
+                        data-payment-icon="master"
+                        v-if="item.icons.includes('mastercard')"
+                      ></span>
+                      <span
+                        class="payment-icon payment-icon--american-express"
+                        data-payment-icon="american-express"
+                        v-if="item.icons.includes('amex')"
+                      ></span>
+                      <span
+                        class="payment-icon payment-icon--giropay"
+                        data-payment-icon="giropay"
+                        v-if="item.icons.includes('giro_pay')"
+                      ></span>
                     </span>
                   </label>
+                  <VueSlideToggle :open="payments[k]" tag="section" :duration="500">
+                    <div class="radio-wrapper content-box__row animated">
+                      <div class="blank-slate">
+                        <p class="shown-if-js">
+                          <button v-if="item.type === 'button'" class="slide-toogle-button">
+                            <img :src="item.src" class="slide-toogle-button-image" />
+                          </button>
+                          <iframe
+                            :src="item.src"
+                            frameborder="0"
+                            width="100%"
+                            height="100%"
+                            v-else-if="item.type === 'iframe'"
+                          ></iframe>
+                        </p>
+                      </div>
+                    </div>
+                  </VueSlideToggle>
                 </div>
               </div>
-
-              <VueSlideToggle :open="payments.card" tag="section" :duration="500">
-                <div
-                  class="radio-wrapper content-box__row content-box__row--secondary animated"
-                  :class="{ fadeIn: payments.card }"
-                >
-                  <div class="blank-slate">
-                    <!-- <i class="blank-slate__icon icon icon--offsite"></i> -->
-                    <p class="shown-if-js">
-                      <iframe src frameborder="0" width="200px"></iframe>
-                    </p>
-                  </div>
-                </div>
-              </VueSlideToggle>
-              <div class="radio-wrapper content-box__row">
-                <div class="radio__input">
-                  <input
-                    class="input-radio"
-                    id="paypal"
-                    type="radio"
-                    :checked="payments.paypal"
-                    @click="onPaymentsPaypalClick"
-                  />
-                </div>
-
-                <div class="radio__label">
-                  <label for="paypal" class="radio__label__primary content-box__emphasis">
-                    <img
-                      alt="PayPal"
-                      class="offsite-payment-gateway-logo"
-                      src="@/assets/paypal.png"
-                    />
-                  </label>
-                </div>
-              </div>
-              <VueSlideToggle :open="payments.paypal" tag="div" :duration="500">
-                <div class="radio-wrapper content-box__row content-box__row--secondary">
-                  <div class="blank-slate">
-                    <!-- <i class="blank-slate__icon icon icon--offsite"></i> -->
-                    <p class="shown-if-js">
-                      <span class="pointer">
-                        <img
-                          src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png"
-                          alt="Check out with PayPal"
-                        />
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </VueSlideToggle>
             </fieldset>
             <div class="trust-block">
               <img src="@/assets/trust.png" alt="trust-logos" class="force-hide-mobile" />
@@ -422,15 +383,13 @@ import Countdown from "@/components/Countdown";
 import CountdownSecond from "@/components/CountdownSecond";
 
 export default {
+  props: ["paymentsData"],
   components: { Countdown, CountdownSecond },
   data() {
     return {
       name: "name",
       showNameInput: false,
-      payments: {
-        paypal: false,
-        card: true
-      },
+      payments: {},
       totalPrice: "$10.00",
       discount: "SPECIALE50",
       showFirstTimer: true,
@@ -461,14 +420,6 @@ export default {
     onBlurInput() {
       this.showNameInput = false;
     },
-    onPaymentsPaypalClick() {
-      this.payments.paypal = true;
-      this.payments.card = false;
-    },
-    onPaymentsCardClick() {
-      this.payments.paypal = false;
-      this.payments.card = true;
-    },
     onToggleSidebar() {
       this.$("#sidebar").slideToggle();
       this.$("#sidebar").toggleClass("hide-on-mobile");
@@ -486,6 +437,31 @@ export default {
     onEndSecondTimer() {
       this.showFirstTimer = false;
       this.showSecondTimer = false;
+    },
+    setPaymentsConditions(data) {
+      if (!Object.keys(data).length) return;
+
+      for (let i in data) {
+        this.payments[i] = false;
+      }
+      const [first] = Object.keys(this.payments);
+      this.$set(this.payments, first, true);
+    },
+    onPaymentsClick(currentName) {
+      var active = Object.keys(this.payments).filter(
+        name => this.payments[name] === true
+      );
+      this.payments = {
+        ...this.payments,
+        [active]: false,
+        [currentName]: true
+      };
+    }
+  },
+  watch: {
+    paymentsData: {
+      immediate: true,
+      handler: "setPaymentsConditions"
     }
   }
 };
@@ -569,6 +545,16 @@ input[disabled] {
 @media (max-width: 749px) {
   .content .review-block__content {
     flex: 1;
+  }
+
+  .radio__label__primary h3 {
+    width: 100%;
+  }
+
+  .radio__label__accessory {
+    display: inline-flex !important;
+    width: 100% !important;
+    justify-content: flex-end !important;
   }
 }
 
@@ -701,5 +687,16 @@ input[disabled] {
 
 .toggleArrow {
   transform: rotate(180deg);
+}
+
+.slide-toogle-button {
+  background-color: #ffc439;
+  border-radius: 5px;
+  padding: 7px 20px;
+}
+
+.slide-toogle-button-image {
+  cursor: pointer;
+  max-width: 120px;
 }
 </style>
